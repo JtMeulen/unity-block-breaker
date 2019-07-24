@@ -13,6 +13,7 @@ public class SceneLoader : MonoBehaviour
 
     public void PlayAgain()
     {
+        FindObjectOfType<GameSession>().DestroySingletonObject();
         SceneManager.LoadScene(0);
     }
 

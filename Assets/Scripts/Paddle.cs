@@ -8,11 +8,6 @@ public class Paddle : MonoBehaviour
     [SerializeField] float clampMin = 1f;
     [SerializeField] float clampMax = 15f;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         float mousePosInUnits = (Input.mousePosition.x / Screen.width) * screenWidthInUnits;

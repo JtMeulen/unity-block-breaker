@@ -120,3 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockBreakSound: {fileID: 8300000, guid: 3f40c85ae51fc44aa88bb84b2977b614, type: 3}
+  particleEffect: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}

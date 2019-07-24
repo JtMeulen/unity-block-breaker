@@ -11,6 +11,10 @@ public class Level : MonoBehaviour
     private void Start()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
+        if (!sceneLoader)
+        {
+            Debug.LogError("Missing SceneLoader Object");
+        }
     }
 
     public void addToBlockCounter()
@@ -25,10 +29,5 @@ public class Level : MonoBehaviour
         {
             sceneLoader.LoadNextScene();
         }
-    }
-
-    public void Update()
-    {
-        Debug.Log(blocksRemaining);
     }
 }
