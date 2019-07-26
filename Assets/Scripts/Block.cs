@@ -6,24 +6,52 @@ public class Block : MonoBehaviour
 {
     [SerializeField] AudioClip blockBreakSound;
     [SerializeField] GameObject particleEffect;
+    [SerializeField] Sprite[] blockSprites;
 
-    Level level;
+    [Range(1, 3)] [SerializeField] int maxHits = 1;
+
+    private Level level;
+    private SpriteRenderer spriteRenderer;
+
+    int totalHits = 0;
 
     private void Start()
     {
         level = FindObjectOfType<Level>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        if (!level)
+        if (!level || !spriteRenderer)
         {
-            Debug.LogError("Could not find Level Object");
+            Debug.LogError("Could not find Level Object or SpriteRenderer");
         }
 
-        level.addToBlockCounter();
+        if (gameObject.tag == "Breakable")
+        {
+            level.addToBlockCounter();
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        DestroyBlock();
+        if (gameObject.tag == "Breakable")
+        {
+            HandleHit();
+        }
+    }
+
+    private void HandleHit()
+    {
+        totalHits++;
+        if (totalHits == maxHits)
+        {
+            DestroyBlock();
+        }
+        else
+        {
+            spriteRenderer.sprite = blockSprites[totalHits - 1];
+        }
+        
     }
 
     private void DestroyBlock()

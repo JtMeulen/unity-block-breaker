@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5409651909304283298}
   - component: {fileID: 5409651909304283301}
   m_Layer: 0
-  m_Name: Block
-  m_TagString: Untagged
+  m_Name: 1hit Breakable Block
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,3 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockBreakSound: {fileID: 8300000, guid: 3f40c85ae51fc44aa88bb84b2977b614, type: 3}
   particleEffect: {fileID: 100000, guid: 7d846c02296ef4dc4abff04ce3e5262c, type: 3}
+  blockSprites: []
+  maxHits: 1
