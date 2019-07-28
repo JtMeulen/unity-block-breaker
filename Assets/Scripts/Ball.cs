@@ -9,19 +9,20 @@ public class Ball : MonoBehaviour
     [SerializeField] float StartYVelocity = 15f;
     [SerializeField] float minXVelocity = -2f;
     [SerializeField] float maxXVelocity = 2f;
+    [SerializeField] float randomFactor = 0.2f;
     [SerializeField] AudioClip[] ballSounds;
 
     AudioSource ballBounceSource;
+    Rigidbody2D myRigidBody;  
     bool ballLaunched = false;
     
 
     void Start()
     {
         ballBounceSource = GetComponent<AudioSource>();
-        if(!ballBounceSource)
-        {
-            Debug.LogError("No sound connected");
-        }
+        myRigidBody = GetComponent<Rigidbody2D>();
+
+        // Check for serialized Paddle Component
         if(!paddle)
         {
             Debug.LogError("Attach paddle Component");
@@ -49,14 +50,20 @@ public class Ball : MonoBehaviour
         {
             ballLaunched = true;
             float RandomStartXVelocity = Random.Range(minXVelocity, maxXVelocity);
-            GetComponent<Rigidbody2D>().velocity = new Vector2(RandomStartXVelocity, StartYVelocity);
+            myRigidBody.velocity = new Vector2(RandomStartXVelocity, StartYVelocity);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Vector2 velocityTweak = new Vector2(
+            Random.Range(-randomFactor, randomFactor),
+            Random.Range(-randomFactor, randomFactor)
+        );
+
         if(ballLaunched)
         {
+            myRigidBody.velocity += velocityTweak;
             AudioClip clip = ballSounds[Random.Range(0, ballSounds.Length)];
             ballBounceSource.PlayOneShot(clip);
         }

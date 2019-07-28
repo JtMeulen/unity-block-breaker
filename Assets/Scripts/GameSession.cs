@@ -5,12 +5,12 @@ using TMPro;
 
 public class GameSession : MonoBehaviour
 {
+    [SerializeField] bool autoPlay;
     [Range(0.1f, 5f)] [SerializeField] float gameSpeed = 1f;
     [SerializeField] int pointsPerDestroy = 0;
-    [SerializeField] int totalScore = 0;
     [SerializeField] TextMeshProUGUI scoreText;
 
-    // int totalScore = 0;
+    int totalScore = 0;
 
     private void Awake()
     {
@@ -50,5 +50,10 @@ public class GameSession : MonoBehaviour
     public void DestroySingletonObject()
     {
         Destroy(gameObject);
+    }
+
+    public bool IsAutoPlayEnabled()
+    {
+        return autoPlay;
     }
 }

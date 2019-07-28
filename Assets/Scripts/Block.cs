@@ -8,7 +8,7 @@ public class Block : MonoBehaviour
     [SerializeField] GameObject particleEffect;
     [SerializeField] Sprite[] blockSprites;
 
-    [Range(1, 3)] [SerializeField] int maxHits = 1;
+    private int maxHits = 1;
 
     private Level level;
     private SpriteRenderer spriteRenderer;
@@ -29,6 +29,8 @@ public class Block : MonoBehaviour
         {
             level.addToBlockCounter();
         }
+
+        maxHits = blockSprites.Length + 1;
         
     }
 
